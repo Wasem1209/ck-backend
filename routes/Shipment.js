@@ -28,7 +28,7 @@ router.get("/track/:id", async (req, res) => {
   try {
     const trackingId = req.params.id.trim(); // 🔍 Remove spaces
 
-    console.log("📦 Searching for Tracking ID:", trackingId); // Debug log
+    console.log("📦 Searching for Tracking ID:", trackingId);
 
     const shipment = await Shipment.findOne({ tracking_id: trackingId });
 
