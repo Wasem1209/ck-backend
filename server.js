@@ -1,9 +1,8 @@
-require("dotenv").config(); // ✅ Load .env file
-
+require ("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const shipmentRoutes = require("./routes/shipment"); // Your router file
+const shipmentRoutes = require("./routes/Shipment");
 
 const app = express();
 app.use(cors());
@@ -12,19 +11,11 @@ app.use(express.json());
 const uri = process.env.MONGO_URI;
 const PORT = process.env.PORT || 3000;
 
-// ✅ Connect to MongoDB
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log("✅ MongoDB Connected Successfully");
-})
-.catch((err) => {
-  console.error("❌ MongoDB connection failed:", err.message);
-});
+mongoose
+  .connect(uri)
+  .then(() => console.log("✅ MongoDB Connected Successfully"))
+  .catch((err) => console.log("❌ MongoDB connection failed:", err.message));
 
-// ✅ Routes
 app.use("/api", shipmentRoutes);
 
 app.listen(PORT, () => {
