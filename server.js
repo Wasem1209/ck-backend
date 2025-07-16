@@ -2,7 +2,7 @@ require ("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const shipmentRoutes = require("./routes/Shipment");
+const trackRoutes = require("./routes/track");
 
 const app = express();
 app.use(cors());
@@ -16,7 +16,7 @@ mongoose
   .then(() => console.log("✅ MongoDB Connected Successfully"))
   .catch((err) => console.log("❌ MongoDB connection failed:", err.message));
 
-app.use("/api", shipmentRoutes);
+app.use(trackRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
